@@ -16,7 +16,7 @@ enum AIError: Error, Equatable, Sendable {
         let text = String(describing: error).lowercased()
         if text.contains("guardrail") || text.contains("refusal") { return .guardrail }
         if text.contains("exceededcontextwindow") || text.contains("contextwindow") { return .contextOverflow }
-        if text.contains("assetsunavailable") || text.contains("unavailable") { return .unavailable }
+        if text.contains("simulator is not supported") || text.contains("assetsunavailable") || text.contains("unavailable") { return .unavailable }
         return .other(error.localizedDescription)
     }
 

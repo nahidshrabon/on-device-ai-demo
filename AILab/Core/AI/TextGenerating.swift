@@ -15,13 +15,7 @@ enum ModelStatus: Equatable {
     case unavailable(String)
 
     @MainActor static var current: ModelStatus {
-        #if targetEnvironment(simulator)
-        // Inference is refused in the Simulator ("Simulator is not supported"),
-        // and availability there can misleadingly read as "downloading".
-        return .unavailable("The iOS Simulator can't run the on-device model. Run on an Apple Intelligence iPhone.")
-        #else
-        return deviceStatus
-        #endif
+        deviceStatus
     }
 
     @MainActor private static var deviceStatus: ModelStatus {
